@@ -17,6 +17,20 @@ public class Job {
     //  other five fields. The second constructor should also call the first in order to initialize
     //  the 'id' field.
 
+    public Job() {
+        id = nextId;
+        nextId++;
+    }
+
+    public Job(String name, Employer employer, Location location, PositionType positionType, CoreCompetency coreCompetency) {
+        this();
+        this.name = name;
+        this.employer = employer;
+        this.location = location;
+        this.positionType = positionType;
+        this.coreCompetency = coreCompetency;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -30,18 +44,9 @@ public class Job {
         return Objects.hash(id);
     }
 
-    public Job() {
-        this.id = id;
-    }
 
-    public Job(String name, Employer employer, Location location, PositionType positionType, CoreCompetency coreCompetency) {
-        this();
-        this.name = name;
-        this.employer = employer;
-        this.location = location;
-        this.positionType = positionType;
-        this.coreCompetency = coreCompetency;
-    }
+
+
 
     // TODO: Add custom equals and hashCode methods. Consider two Job objects "equal" when their id fields
     //  match.
@@ -93,5 +98,35 @@ public class Job {
 
     public void setCoreCompetency(CoreCompetency coreCompetency) {
         this.coreCompetency = coreCompetency;
+    }
+
+
+    @Override
+    public String toString() {
+
+        if(name == null || name.equals("")){
+            name += "Data not available";
+        };
+        if(employer.getValue() == null || employer.getValue().equals("")){
+            employer.setValue("Data not available");
+        }
+        if(location.getValue() == null || location.getValue().equals("")){
+            location.setValue("Data not available");
+        }
+        if(positionType.getValue() == null || positionType.getValue().equals("")){
+            positionType.setValue("Data not available");
+        }
+        if(coreCompetency.getValue() == null || coreCompetency.getValue().equals("")){
+            coreCompetency.setValue("Data not available");
+        }
+
+        return
+                "\nID: " + id +
+                "\nName: " + name  +
+                "\nEmployer: " + employer +
+                "\nLocation: " + location +
+                "\nPosition Type: " + positionType +
+                "\nCore Competency: " + coreCompetency +
+                "\n";
     }
 }
